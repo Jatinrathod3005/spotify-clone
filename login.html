@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Login - Spotify</title>
+        <link rel="icon" href="https://accounts.scdn.co/sso/images/favicon.ace4d8543bbb017893402a1e9d1ac1fa.ico">
+        <script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/u-xcq3POCWFlCr3x8_IPxgPu/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-CDkofqMo6hSAPRh2TZj9HOLusb5hze4z6vkh6YWvd810w+KTuT5lucK9hQN36Xh7"></script>
+        <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+        <script defer="" src="https://accounts.scdn.co/sso/js/indexReact.12e99753601845607e49.js" sp-bootstrap=""></script>
+        <meta id="bootstrap-data" sp-bootstrap-data="{&quot;phoneFeatureEnabled&quot;:true,&quot;previewEnabled&quot;:false,&quot;user&quot;:false,&quot;tpaState&quot;:&quot;AQDjS8SjLEsK3oapMjMB4WlnsXZ2N3z5390LMd7ZUuIZFLnVdd+PrXcp/DQiDSCvaba9BkIlFfH3It1SVxqCSeY116ysLP1TpWoIzZY/7I7NSjneqTwfi2DQjggGu+6DHvh7qrATGrBjAxkLzHN8xTjHw6dVUw2nneB4AwIPUJoFatOcxWqIb25JK7IaCEd3KU/0Z8JZa5JzR8NSzStA480K/SDtVBYVrwkOS2ejZ7hHkhOiCtXSK92aAffT8V0N1gwnhS+6l9sL3A==&quot;,&quot;geoLocationCountryCode&quot;:&quot;IN&quot;,&quot;state&quot;:&quot;&quot;,&quot;flowCtx&quot;:&quot;a57281f3-0a84-4ddd-b2bd-87c8e9ade4fe:1704568765&quot;,&quot;BON&quot;:[&quot;0&quot;,&quot;0&quot;,-644463695]}" sp-component="login" sp-translations-data="eyJlcnJvclRpdGxlIjoiRXJyb3IiLCJsb2dpblRpdGxlIjoiTG9naW4iLCJmb3Jnb3RZb3VyUGFzc3dvcmRVc2VybmFtZSI6IkZvcmdvdCB5b3VyIHBhc3N3b3JkPyIsImRvbnRIYXZlQW5BY2NvdW50IjoiRG9uJ3QgaGF2ZSBhbiBhY2NvdW50PyIsImlucHV0VXNlcm5hbWUiOiJFbWFpbCBhZGRyZXNzIG9yIHVzZXJuYW1lIiwiaW5wdXRFbWFpbE9yVXNlcm5hbWUiOiJFbWFpbCBvciB1c2VybmFtZSIsImlucHV0UGFzc3dvcmQiOiJQYXNzd29yZCIsImNoZWNrYm94UmVtZW1iZXJNZSI6IlJlbWVtYmVyIG1lIiwiZXJyb3JGb3JtRGVmYXVsdCI6Ik9vcHMhIFNvbWV0aGluZyB3ZW50IHdyb25nLCBwbGVhc2UgdHJ5IGFnYWluIG9yIGNoZWNrIG91dCBvdXIgPGhlbHBMaW5rPmhlbHAgYXJlYTwvaGVscExpbms+IiwiZXJyb3JJbnZhbGlkQ3JlZGVudGlhbHMiOiJJbmNvcnJlY3QgdXNlcm5hbWUgb3IgcGFzc3dvcmQuIiwiZXJyb3JJbnZhbGlkQ3JlZGVudGlhbHNJbXByb3ZlZCI6IkluY29ycmVjdCBlbWFpbCBhZGRyZXNzLCB1c2VybmFtZSBvciBwYXNzd29yZC4iLCJlcnJvclVua25vd24iOiJPb3BzISBTb21ldGhpbmcgd2VudCB3cm9uZywgcGxlYXNlIHRyeSBhZ2FpbiBvciBjaGVjayBvdXQgb3VyIDxoZWxwTGluaz5oZWxwIGFyZWE8L2hlbHBMaW5rPiIsImVycm9yVHJhbnNpZW50IjoiQW4gZXJyb3IgaGFzIG9jY3VycmVkIHByb2Nlc3NpbmcgeW91ciBsb2dpbi4gUGxlYXNlIHRyeSBhZ2Fpbi4iLCJlcnJvckZhY2Vib29rQWNjb3VudCI6IllvdSBkbyBub3QgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCBjb25uZWN0ZWQgdG8geW91ciBGYWNlYm9vayBhY2NvdW50LiBJZiB5b3UgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCwgcGxlYXNlIGxvZyBpbiB3aXRoIHlvdXIgU3BvdGlmeSBjcmVkZW50aWFscy4gSWYgeW91IGRvIG5vdCBoYXZlIGEgU3BvdGlmeSBhY2NvdW50LCA8bGlua1dpdGhIcmVmPnNpZ24gdXA8L2xpbmtXaXRoSHJlZj4uIiwiZXJyb3JTZXJ2ZXJFcnJvciI6IkFuIGVycm9yIGhhcyBvY2N1cnJlZCBwcm9jZXNzaW5nIHlvdXIgcmVxdWVzdC4gUGxlYXNlIHRyeSBhZ2Fpbi4iLCJlcnJvclVzZXJuYW1lUmVxdWlyZWQiOiJQbGVhc2UgZW50ZXIgeW91ciBTcG90aWZ5IHVzZXJuYW1lIG9yIGVtYWlsIGFkZHJlc3MuIiwiZXJyb3JVc2VybmFtZUludmFsaWRDaGFyYWN0ZXJzIjoiRm9yYmlkZGVuIGNoYXJhY3RlcihzKSB7Zm9yYmlkZGVuQ2hhcnN9IGluIHVzZXJuYW1lLiIsImVycm9yUGFzc3dvcmRSZXF1aXJlZCI6IlBsZWFzZSBlbnRlciB5b3VyIHBhc3N3b3JkLiIsImVycm9yTm9JbnRlcm5ldENvbm5lY3Rpdml0eSI6IlByb2JsZW0gY29ubmVjdGluZy4gQ2hlY2sgeW91ciBpbnRlcm5ldCBjb25uZWN0aW9uIGFuZCB7dHJ5QWdhaW5MaW5rfS4iLCJlcnJvclRyeUFnYWluIjoidHJ5IGFnYWluIiwibG9nSW4iOiJMb2cgSW4iLCJsb2dJblRvU3BvdGlmeSI6IkxvZyBpbiB0byBTcG90aWZ5Iiwic2lnblVwRm9yU3BvdGlmeSI6IlNpZ24gdXAgZm9yIFNwb3RpZnkiLCJvciI6Im9yIiwibG9naW5Ub0NvbnRpbnVlIjoiVG8gY29udGludWUsIGxvZyBpbiB0byBTcG90aWZ5LiIsImVycm9yVmFsaWRhdGlvbkludmFsaWRDb2RlIjoiVGhpcyBjb2RlIGlzIGludmFsaWQuIENoZWNrIHRoZSBTTVMgYW5kIHRyeSBhZ2Fpbi4iLCJlcnJvclN1Ym1pdFRvb2tUb29Mb25nVG9DcmVhdGUiOiJJdCB0b29rIHRvbyBsb25nIHRvIGNvbXBsZXRlIHlvdXIgcmVxdWVzdC4gVHJ5IGFnYWluLiIsImVycm9yQXBwbGVBY2NvdW50IjoiWW91IGRvIG5vdCBoYXZlIGEgU3BvdGlmeSBhY2NvdW50IGNvbm5lY3RlZCB0byB5b3VyIEFwcGxlIElELiBJZiB5b3UgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCwgcGxlYXNlIHRyeSBsb2cgaW4gd2l0aCB5b3VyIFNwb3RpZnkgZW1haWwgb3IgdXNlcm5hbWUuIElmIHlvdSBkbyBub3QgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCwgcGxlYXNlIHNpZ24gdXAuIiwiY29udGludWVXaXRoQXBwbGUiOiJDb250aW51ZSB3aXRoIEFwcGxlIiwiY29udGludWVXaXRoRmFjZWJvb2siOiJDb250aW51ZSB3aXRoIEZhY2Vib29rIiwiY29udGludWVXaXRoUGhvbmVOdW1iZXIiOiJDb250aW51ZSB3aXRoIHBob25lIG51bWJlciIsImNvbnRpbnVlV2l0aEdvb2dsZSI6IkNvbnRpbnVlIHdpdGggR29vZ2xlIiwiZXJyb3JHb29nbGVBY2NvdW50IjoiWW91IGRvIG5vdCBoYXZlIGEgU3BvdGlmeSBhY2NvdW50IGNvbm5lY3RlZCB0byB5b3VyIEdvb2dsZSBBY2NvdW50LiBJZiB5b3UgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCwgcGxlYXNlIHRyeSBsb2cgaW4gd2l0aCB5b3VyIFNwb3RpZnkgZW1haWwgb3IgdXNlcm5hbWUuIElmIHlvdSBkbyBub3QgaGF2ZSBhIFNwb3RpZnkgYWNjb3VudCwgcGxlYXNlIHNpZ24gdXAuIiwicmVjYXB0Y2hhTGVnYWxOb3RpY2UiOiJUaGlzIHNpdGUgaXMgcHJvdGVjdGVkIGJ5IHJlQ0FQVENIQSBhbmQgdGhlIEdvb2dsZSA8Z29vZ2xlUHJpdmFjeVBvbGljeUxpbms+UHJpdmFjeSBQb2xpY3k8L2dvb2dsZVByaXZhY3lQb2xpY3lMaW5rPiBhbmQgPGdvb2dsZVRlcm1zTGluaz5UZXJtcyBvZiBTZXJ2aWNlPC9nb29nbGVUZXJtc0xpbms+IGFwcGx5LiIsImxvZ2luV2l0aG91dFBhc3N3b3JkIjoiTG9nIGluIHdpdGhvdXQgcGFzc3dvcmQiLCJtYWdpY19saW5rX3BvcHVwX2hlYWRlciI6IkhhdmluZyB0cm91YmxlIGxvZ2dpbmcgaW4/IiwibWFnaWNfbGlua19wb3B1cF9ib2R5IjoiV2Ugc2VudCBhbiBlbWFpbCB3aXRoIGEgbGluayB0aGF0IHdpbGwgbG9nIHlvdSBpbiB3aXRob3V0IGEgcGFzc3dvcmQuIiwiZGlhbG9nX19hY3Rpb25fcmV0cnlfbG9naW4iOiJUcnkgYW5vdGhlciBwYXNzd29yZCJ9">
+        
+        <title>Login Page</title>
+        <style>
+            body {
+              background-color: #121212;
+              margin: 0;
+            }
+            #root {
+              min-height: 100vh;
+            }
+            .loading-indicator-container {
+              height: 100vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .loading-indicator-container * {
+              box-sizing: border-box;
+            }
+            .loading-indicator {
+              content: "";
+              width: 56px;
+              inline-size: 56px;
+              block-size: 12.4px;
+              height: 12.4px;
+              overflow-clip-margin: content-box;
+              overflow: hidden;
+            }
+            .loading-indicator circle {
+              fill: white;
+              animation: loading-indicator-kf 1.32s linear infinite;
+              transform-origin: center center;
+              opacity: 0.5;
+            }
+            .loading-indicator circle:nth-of-type(2) {
+              animation-delay: 0.1s;
+            }
+            .loading-indicator circle:nth-of-type(3) {
+              animation-delay: 0.2s;
+            }
+            @keyframes loading-indicator-kf {
+              0% {
+                animation-timing-function: cubic-bezier(1, 0, 0.7, 1);
+                opacity: 0.5;
+                transform: scale(1);
+              }
+              40% {
+                animation-timing-function: cubic-bezier(0.3, 0, 0, 1);
+                opacity: 0.75;
+                transform: scale(1.3);
+              }
+              72.5% {
+                animation-timing-function: linear;
+                opacity: 0.5;
+                transform: scale(1);
+              }
+              100% {
+                opacity: 0.5;
+                transform: scale(1);
+              }
+            }
+          </style>
+
+<style>@font-face {
+    font-family: CircularSp-Deva;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0901-097F, U+200C-200E, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Deva-Black-df61c130f4417f030476bc0eddf1cfc7.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Deva-Black-518ec591790874706201767a6567cc36.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Deva;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0901-097F, U+200C-200E, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Deva-Bold-d76d26d4b5e82c56cda759c32bccac92.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Deva-Bold-585d83ad76f7aa1ceb8baf0740bbc943.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Deva;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0901-097F, U+200C-200E, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Deva-Book-53ba72567f147af6cde0f0fab65d7704.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Deva-Book-33444a874971fd5d968b1b382ab95445.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Grek;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7, U+0375,
+      U+037A, U+0384, U+0386, U+0388-038A, U+038C, U+038E-03A1, U+03A3-03CF,
+      U+03D7, U+2126, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Grek-Black-b45055a950eac7560342cb7fa07559ad.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Grek-Black-49883536c1a3bfc688235ce40572731d.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Grek;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7, U+0375,
+      U+037A, U+0384, U+0386, U+0388-038A, U+038C, U+038E-03A1, U+03A3-03CF,
+      U+03D7, U+2126, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Grek-Bold-fafb1410c85fe7e6e81c68e609d4b823.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Grek-Bold-53bb923248ba22cf5554bbe5f434c5c8.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Grek;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7, U+0375,
+      U+037A, U+0384, U+0386, U+0388-038A, U+038C, U+038E-03A1, U+03A3-03CF,
+      U+03D7, U+2126, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Grek-Book-5d5a3a10aa26b63a2575ce872ad43f07.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Grek-Book-c9de2c0741586c1ab7b6e95541fc7807.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSpTitle;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+0020-007E, U+00A0-00BF, U+00C6-00C7, U+00D0, U+00D7,
+      U+00DE-00E4, U+00E6-00EF, U+00F1-00FF, U+0101, U+0103-0105, U+0107, U+0109,
+      U+010B, U+010D, U+010F-0111, U+0113, U+0115, U+0117-0119, U+011B, U+011D,
+      U+011F, U+0121, U+0126-0127, U+0129, U+012B, U+012D-012F, U+0131-0133,
+      U+0135, U+0138, U+013E-0142, U+0144, U+0148, U+014A-014B, U+014D, U+014F,
+      U+0151-0153, U+0155, U+0159, U+015B, U+015D-015F, U+0161-0163, U+0166-0167,
+      U+0169, U+016B, U+016D, U+0171-0173, U+0175, U+0177, U+017A, U+017C, U+017E,
+      U+018F, U+0192, U+01A1, U+01B0, U+01B5-01B6, U+01C5-01C6, U+01F1-01F3,
+      U+01FD, U+01FF, U+0237, U+0259, U+02C6-02C7, U+02C9, U+02D8-02D9,
+      U+02DB-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+1E81, U+1E83, U+1E85, U+1E8B,
+      U+1EA0-1EA1, U+1EAD, U+1EB7-1EB9, U+1EBD, U+1EC7, U+1ECA-1ECD, U+1ED9,
+      U+1EDB, U+1EDD, U+1EE3-1EE5, U+1EE9, U+1EEB, U+1EF1, U+1EF3-1EF5, U+1EF9,
+      U+1FD6, U+2007-2008, U+200B, U+2010-2011, U+2013-2014, U+2018-201A,
+      U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2042,
+      U+2044, U+2051, U+2070, U+2074-2079, U+2080-2089, U+20AB-20AC, U+2113,
+      U+2117, U+2122, U+2126, U+2160-2169, U+216C-216F, U+2190-2193, U+2196-2199,
+      U+21A9, U+21B0-21B5, U+21C6, U+2202, U+2206, U+220F, U+2211-2212, U+2215,
+      U+2219, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+22C5, U+24C5,
+      U+25A0-25A1, U+25AF, U+25B2-25B3, U+25CA-25CB, U+25CF, U+262E, U+2713,
+      U+2715, U+2780-2788, U+E000, U+E002, U+FB00-FB04, U+FEFF, U+FF0C, U+FF0E,
+      U+FF1A-FF1B, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSpTitle-Black-3f9afb402080d53345ca1850226ca724.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSpTitle-Black-b063ad0a42cbaf519c7ccba8b3e1caeb.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSpTitle;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+0020-007E, U+00A0-00BF, U+00C6-00C7, U+00D0, U+00D7,
+      U+00DE-00E4, U+00E6-00EF, U+00F1-00FF, U+0101, U+0103-0105, U+0107, U+0109,
+      U+010B, U+010D, U+010F-0111, U+0113, U+0115, U+0117-0119, U+011B, U+011D,
+      U+011F, U+0121, U+0126-0127, U+0129, U+012B, U+012D-012F, U+0131-0133,
+      U+0135, U+0138, U+013E-0142, U+0144, U+0148, U+014A-014B, U+014D, U+014F,
+      U+0151-0153, U+0155, U+0159, U+015B, U+015D-015F, U+0161-0163, U+0166-0167,
+      U+0169, U+016B, U+016D, U+0171-0173, U+0175, U+0177, U+017A, U+017C, U+017E,
+      U+018F, U+0192, U+01A1, U+01B0, U+01B5-01B6, U+01C5-01C6, U+01F1-01F3,
+      U+01FD, U+01FF, U+0237, U+0259, U+02C6-02C7, U+02C9, U+02D8-02D9,
+      U+02DB-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+1E81, U+1E83, U+1E85, U+1E8B,
+      U+1EA0-1EA1, U+1EAD, U+1EB7-1EB9, U+1EBD, U+1EC7, U+1ECA-1ECD, U+1ED9,
+      U+1EDB, U+1EDD, U+1EE3-1EE5, U+1EE9, U+1EEB, U+1EF1, U+1EF3-1EF5, U+1EF9,
+      U+1FD6, U+2007-2008, U+200B, U+2010-2011, U+2013-2014, U+2018-201A,
+      U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2042,
+      U+2044, U+2051, U+2070, U+2074-2079, U+2080-2089, U+20AB-20AC, U+2113,
+      U+2117, U+2122, U+2126, U+2160-2169, U+216C-216F, U+2190-2193, U+2196-2199,
+      U+21A9, U+21B0-21B5, U+21C6, U+2202, U+2206, U+220F, U+2211-2212, U+2215,
+      U+2219, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+22C5, U+24C5,
+      U+25A0-25A1, U+25AF, U+25B2-25B3, U+25CA-25CB, U+25CF, U+262E, U+2713,
+      U+2715, U+2780-2788, U+E000, U+E002, U+FB00-FB04, U+FEFF, U+FF0C, U+FF0E,
+      U+FF1A-FF1B, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSpTitle-Bold-2fbf72b606d7f0b0f771ea4956a8b4d6.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSpTitle-Bold-7cd3208b73fd0850bca5d8f7821439cd.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSpTitle-Tall;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+0020, U+00A0, U+00A4, U+00B6-00B7, U+00C0-00C5,
+      U+00C8-00CF, U+00D1-00D6, U+00D8-00DD, U+00E5, U+00F0, U+0100, U+0102,
+      U+0106, U+0108, U+010A, U+010C, U+010E, U+0112, U+0114, U+0116, U+011A,
+      U+011C, U+011E, U+0120, U+0122-0125, U+0128, U+012A, U+012C, U+0130, U+0134,
+      U+0136-0137, U+0139-013D, U+0143, U+0145-0147, U+0149, U+014C, U+014E,
+      U+0150, U+0154, U+0156-0158, U+015A, U+015C, U+0160, U+0164-0165, U+0168,
+      U+016A, U+016C, U+016E-0170, U+0174, U+0176, U+0178-0179, U+017B, U+017D,
+      U+01A0, U+01AF, U+01C4, U+01FA-01FC, U+01FE, U+0218-021B, U+02BB-02BC,
+      U+02DA, U+0300-0301, U+0303, U+0309, U+0323, U+1E80, U+1E82, U+1E84, U+1E8A,
+      U+1EA2-1EAC, U+1EAE-1EB6, U+1EBA-1EBC, U+1EBE-1EC6, U+1EC8-1EC9, U+1ECE-1ED8,
+      U+1EDA, U+1EDC, U+1EDE-1EE2, U+1EE6-1EE8, U+1EEA, U+1EEC-1EF0, U+1EF2,
+      U+1EF6-1EF8, U+221A, U+F6C3, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSpTitle-Tall-Black-dd3ec8c5997b5c7135fb3716866ded28.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSpTitle-Tall-Black-35a438fa59bc07bdf08133e438d72409.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSpTitle-Tall;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+0020, U+00A0, U+00A4, U+00B6-00B7, U+00C0-00C5,
+      U+00C8-00CF, U+00D1-00D6, U+00D8-00DD, U+00E5, U+00F0, U+0100, U+0102,
+      U+0106, U+0108, U+010A, U+010C, U+010E, U+0112, U+0114, U+0116, U+011A,
+      U+011C, U+011E, U+0120, U+0122-0125, U+0128, U+012A, U+012C, U+0130, U+0134,
+      U+0136-0137, U+0139-013D, U+0143, U+0145-0147, U+0149, U+014C, U+014E,
+      U+0150, U+0154, U+0156-0158, U+015A, U+015C, U+0160, U+0164-0165, U+0168,
+      U+016A, U+016C, U+016E-0170, U+0174, U+0176, U+0178-0179, U+017B, U+017D,
+      U+01A0, U+01AF, U+01C4, U+01FA-01FC, U+01FE, U+0218-021B, U+02BB-02BC,
+      U+02DA, U+0300-0301, U+0303, U+0309, U+0323, U+1E80, U+1E82, U+1E84, U+1E8A,
+      U+1EA2-1EAC, U+1EAE-1EB6, U+1EBA-1EBC, U+1EBE-1EC6, U+1EC8-1EC9, U+1ECE-1ED8,
+      U+1EDA, U+1EDC, U+1EDE-1EE2, U+1EE6-1EE8, U+1EEA, U+1EEC-1EF0, U+1EF2,
+      U+1EF6-1EF8, U+221A, U+F6C3, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSpTitle-Tall-Bold-69995af8079e90f1d15130df13ad0c60.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSpTitle-Tall-Bold-24c7e518b6e633e498760fab4aa88218.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-017E, U+018F, U+0192,
+      U+01A0-01A1, U+01AF-01B0, U+01B5-01B6, U+01C4-01C6, U+01F1-01F3, U+01FA-01FF,
+      U+0218-021B, U+0237, U+0259, U+02BB-02BC, U+02C6-02C7, U+02C9, U+02D8-02DD,
+      U+0300-0301, U+0303, U+0309, U+0323, U+0394, U+03A9, U+03BC, U+03C0,
+      U+1E80-1E85, U+1E8A-1E8B, U+1EA0-1EF9, U+1FD6, U+2007-2008, U+200B,
+      U+2010-2011, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026,
+      U+2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+2051, U+2070,
+      U+2074-2079, U+2080-2089, U+20AB-20AC, U+2113, U+2117, U+2122, U+2126,
+      U+2160-2169, U+216C-216F, U+2190-2193, U+2196-2199, U+21A9, U+21B0-21B5,
+      U+21C6, U+2202, U+2206, U+220F, U+2211-2212, U+2215, U+2219-221A, U+221E,
+      U+222B, U+2248, U+2260, U+2264-2265, U+22C5, U+24C5, U+25A0-25A1, U+25AF,
+      U+25B2-25B3, U+25CA-25CB, U+25CF, U+262E, U+2713, U+2715, U+2780-2788,
+      U+E000, U+E002, U+F6C3, U+FB00-FB04, U+FEFF, U+FF0C, U+FF0E, U+FF1A-FF1B,
+      U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Bold-fe1cfc14b7498b187c78fa72fb72d148.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Bold-79ebb2bdea919cebedea4884d08c499e.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-017E, U+018F, U+0192,
+      U+01A0-01A1, U+01AF-01B0, U+01B5-01B6, U+01C4-01C6, U+01F1-01F3, U+01FA-01FF,
+      U+0218-021B, U+0237, U+0259, U+02BB-02BC, U+02C6-02C7, U+02C9, U+02D8-02DD,
+      U+0300-0301, U+0303, U+0309, U+0323, U+0394, U+03A9, U+03BC, U+03C0,
+      U+1E80-1E85, U+1E8A-1E8B, U+1EA0-1EF9, U+1FD6, U+2007-2008, U+200B,
+      U+2010-2011, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026,
+      U+2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+2051, U+2070,
+      U+2074-2079, U+2080-2089, U+20AB-20AC, U+2113, U+2117, U+2122, U+2126,
+      U+2160-2169, U+216C-216F, U+2190-2193, U+2196-2199, U+21A9, U+21B0-21B5,
+      U+21C6, U+2202, U+2206, U+220F, U+2211-2212, U+2215, U+2219-221A, U+221E,
+      U+222B, U+2248, U+2260, U+2264-2265, U+22C5, U+24C5, U+25A0-25A1, U+25AF,
+      U+25B2-25B3, U+25CA-25CB, U+25CF, U+262E, U+2713, U+2715, U+2780-2788,
+      U+E000, U+E002, U+F6C3, U+FB00-FB04, U+FEFF, U+FF0C, U+FF0E, U+FF1A-FF1B,
+      U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Book-4eaffdf96f4c6f984686e93d5d9cb325.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Book-4f217aebee53ffc72f4444f79041ffa5.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Arab;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+0600-0603, U+060B-060C, U+0610,
+      U+061B, U+061F, U+0621-063A, U+0640-0659, U+0660-0671, U+0679-0681,
+      U+0683-068A, U+068C-068D, U+068F, U+0691, U+0693, U+0696, U+0698-069A,
+      U+06A1, U+06A4, U+06A6, U+06A9-06AB, U+06AF, U+06B1, U+06B3, U+06BA-06BC,
+      U+06BE, U+06C0-06C3, U+06CC-06CD, U+06D0, U+06D2-06D5, U+06F0-06F9,
+      U+06FD-06FE, U+2002-2003, U+2009, U+200C-200F, U+25CC, U+FB50-FB85,
+      U+FB88-FBBB, U+FBBD-FBC1, U+FBE4-FBE9, U+FBFC-FBFF, U+FC48, U+FC5E-FC63,
+      U+FD3E-FD3F, U+FDF2, U+FDFC, U+FE80-FEFC, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Arab-Black-004ffe741bbd6a93d722a92be18a443c.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Arab-Black-5c0e7ffd4ec3c07e7a8ed36052634042.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Arab;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+0600-0603, U+060B-060C, U+0610,
+      U+061B, U+061F, U+0621-063A, U+0640-0659, U+0660-0671, U+0679-0681,
+      U+0683-068A, U+068C-068D, U+068F, U+0691, U+0693, U+0696, U+0698-069A,
+      U+06A1, U+06A4, U+06A6, U+06A9-06AB, U+06AF, U+06B1, U+06B3, U+06BA-06BC,
+      U+06BE, U+06C0-06C3, U+06CC-06CD, U+06D0, U+06D2-06D5, U+06F0-06F9,
+      U+06FD-06FE, U+2002-2003, U+2009, U+200C-200F, U+25CC, U+FB50-FB85,
+      U+FB88-FBBB, U+FBBD-FBC1, U+FBE4-FBE9, U+FBFC-FBFF, U+FC48, U+FC5E-FC63,
+      U+FD3E-FD3F, U+FDF2, U+FDFC, U+FE80-FEFC, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Arab-Bold-d27e6d58059178982d385a7bad4b40f7.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Arab-Bold-fa6517675ec4778aba802ba32fd03d1c.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Arab;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+0600-0603, U+060B-060C, U+0610,
+      U+061B, U+061F, U+0621-063A, U+0640-0659, U+0660-0671, U+0679-0681,
+      U+0683-068A, U+068C-068D, U+068F, U+0691, U+0693, U+0696, U+0698-069A,
+      U+06A1, U+06A4, U+06A6, U+06A9-06AB, U+06AF, U+06B1, U+06B3, U+06BA-06BC,
+      U+06BE, U+06C0-06C3, U+06CC-06CD, U+06D0, U+06D2-06D5, U+06F0-06F9,
+      U+06FD-06FE, U+2002-2003, U+2009, U+200C-200F, U+25CC, U+FB50-FB85,
+      U+FB88-FBBB, U+FBBD-FBC1, U+FBE4-FBE9, U+FBFC-FBFF, U+FC48, U+FC5E-FC63,
+      U+FD3E-FD3F, U+FDF2, U+FDFC, U+FE80-FEFC, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Arab-Book-7e814731b5ed2251c5661c7fa6dc2626.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Arab-Book-c6e272fa4d4ed066b55439bffce7ed83.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Cyrl;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0400-045F, U+0462-0463, U+0472-0475, U+0490-0493, U+049A-049B, U+04A2-04A3,
+      U+04AE-04B3, U+04BA-04BB, U+04D8-04D9, U+04E8-04E9, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Black-1ce6672693e92d2cb1d04af1690e1f9c.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Black-b4305d9bf82554f631d2636c3ef90c54.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Cyrl;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0400-045F, U+0462-0463, U+0472-0475, U+0490-0493, U+049A-049B, U+04A2-04A3,
+      U+04AE-04B3, U+04BA-04BB, U+04D8-04D9, U+04E8-04E9, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Bold-180db050d109afeef4331b1ee551c349.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Bold-7e54bccaf45728c472079785d5cd4519.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Cyrl;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+00A0, U+00A4, U+00B6-00B7,
+      U+0400-045F, U+0462-0463, U+0472-0475, U+0490-0493, U+049A-049B, U+04A2-04A3,
+      U+04AE-04B3, U+04BA-04BB, U+04D8-04D9, U+04E8-04E9, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Book-cc791a2e69e25c0440792bd855600ca7.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Cyrl-Book-6f078f781ee313e298ad8997fd1ffe3d.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Hebr;
+    font-weight: 900;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+0030-0039, U+00A0, U+00A4,
+      U+00B6-00B7, U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+05B0-05C4, U+05D0-05EA,
+      U+05F0-05F4, U+200E-200F, U+20AA, U+FB2A-FB36, U+FB38-FB3C, U+FB3E,
+      U+FB40-FB41, U+FB43-FB44, U+FB46-FB4F, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Hebr-Black-29a8af6f5782cdf3009a5ac966ee4fa6.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Hebr-Black-f52613a9d541248805af1d0bb33102f8.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Hebr;
+    font-weight: 700;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+0030-0039, U+00A0, U+00A4,
+      U+00B6-00B7, U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+05B0-05C4, U+05D0-05EA,
+      U+05F0-05F4, U+200E-200F, U+20AA, U+FB2A-FB36, U+FB38-FB3C, U+FB3E,
+      U+FB40-FB41, U+FB43-FB44, U+FB46-FB4F, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Hebr-Bold-9b609e9268a3f9d73732dc3cc375821e.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Hebr-Bold-caa03e4cb8690e726ef1625c7d91a7a5.woff')
+        format('woff');
+  }
+  @font-face {
+    font-family: CircularSp-Hebr;
+    font-weight: 400;
+    font-display: swap;
+    unicode-range: U+0000, U+000D, U+0020, U+0030-0039, U+00A0, U+00A4,
+      U+00B6-00B7, U+01C4-01C6, U+01F1-01F3, U+02BB-02BC, U+05B0-05C4, U+05D0-05EA,
+      U+05F0-05F4, U+200E-200F, U+20AA, U+FB2A-FB36, U+FB38-FB3C, U+FB3E,
+      U+FB40-FB41, U+FB43-FB44, U+FB46-FB4F, U+FFFF;
+    src: url('https://encore.scdn.co/fonts/CircularSp-Hebr-Book-414f88babad55bb44c9552d9b92504f7.woff2')
+        format('woff2'),
+      url('https://encore.scdn.co/fonts/CircularSp-Hebr-Book-d8209975eafc81a9499df8401a339ddd.woff')
+        format('woff');
+  }</style>
+  </head>
+    <body>
+        <div id="root"><div class="sc-gScZFl fjJIOS encore-dark-theme"><div class="sc-lbVpMG ijUaCv"><div data-testid="spotify-logo" class="sc-oZIhv gKEirO spotify-logo"><svg role="img" viewBox="0 0 78 24" aria-label="Spotify" aria-hidden="false" height="100%" data-encore-id="logoSpotify" class="Svg-sc-6c3c1v-0 fMEvxo" style="fill: white;"><title>Spotify</title><path d="M18.616 10.639c-3.77-2.297-9.99-2.509-13.59-1.388a1.077 1.077 0 0 1-1.164-.363 1.14 1.14 0 0 1-.119-1.237c.136-.262.37-.46.648-.548 4.132-1.287 11-1.038 15.342 1.605a1.138 1.138 0 0 1 .099 1.863 1.081 1.081 0 0 1-.813.213c-.142-.02-.28-.07-.403-.145Zm-.124 3.402a.915.915 0 0 1-.563.42.894.894 0 0 1-.69-.112c-3.144-1.983-7.937-2.557-11.657-1.398a.898.898 0 0 1-.971-.303.952.952 0 0 1-.098-1.03.929.929 0 0 1 .54-.458c4.248-1.323 9.53-.682 13.14 1.595a.95.95 0 0 1 .3 1.286Zm-1.43 3.267a.73.73 0 0 1-.45.338.712.712 0 0 1-.553-.089c-2.748-1.722-6.204-2.111-10.276-1.156a.718.718 0 0 1-.758-.298.745.745 0 0 1-.115-.265.757.757 0 0 1 .092-.563.737.737 0 0 1 .457-.333c4.455-1.045 8.277-.595 11.361 1.338a.762.762 0 0 1 .241 1.028ZM11.696 0C5.237 0 0 5.373 0 12c0 6.628 5.236 12 11.697 12 6.46 0 11.698-5.372 11.698-12 0-6.627-5.238-12-11.699-12h.001Zm20.126 11.078c-2.019-.494-2.379-.84-2.379-1.57 0-.688.633-1.151 1.572-1.151.91 0 1.814.352 2.76 1.076a.131.131 0 0 0 .187-.03l.987-1.426a.139.139 0 0 0-.025-.185c-1.127-.928-2.396-1.378-3.88-1.378-2.18 0-3.703 1.342-3.703 3.263 0 2.06 1.315 2.788 3.585 3.352 1.932.457 2.258.84 2.258 1.524 0 .757-.659 1.229-1.72 1.229-1.18 0-2.141-.408-3.216-1.364a.13.13 0 0 0-.188.016l-1.106 1.35a.137.137 0 0 0 .013.188c1.252 1.147 2.79 1.752 4.451 1.752 2.35 0 3.869-1.317 3.869-3.356 0-1.723-1.003-2.676-3.465-3.29Zm10.487 2.31c0 1.454-.874 2.47-2.125 2.47-1.235 0-2.169-1.061-2.169-2.47 0-1.41.933-2.47 2.17-2.47 1.23 0 2.124 1.038 2.124 2.47Zm-1.706-4.354c-1.018 0-1.854.412-2.543 1.256v-.95a.136.136 0 0 0-.038-.095.132.132 0 0 0-.093-.04h-1.81a.131.131 0 0 0-.093.04.136.136 0 0 0-.039.096v10.546c0 .076.06.137.133.137h1.809a.132.132 0 0 0 .093-.041.136.136 0 0 0 .038-.096v-3.329c.69.794 1.525 1.18 2.543 1.18 1.893 0 3.808-1.494 3.808-4.35 0-2.858-1.915-4.354-3.808-4.354Zm8.72 6.839c-1.297 0-2.274-1.068-2.274-2.486 0-1.422.943-2.455 2.244-2.455 1.305 0 2.288 1.069 2.288 2.487 0 1.422-.949 2.454-2.258 2.454Zm0-6.838c-2.438 0-4.347 1.926-4.347 4.383 0 2.432 1.896 4.338 4.317 4.338 2.445 0 4.36-1.92 4.36-4.369 0-2.44-1.901-4.353-4.33-4.353Zm9.535.17h-1.99V7.117a.136.136 0 0 0-.08-.126.13.13 0 0 0-.052-.01h-1.809a.133.133 0 0 0-.093.04.136.136 0 0 0-.038.095v2.087h-.87a.131.131 0 0 0-.122.085.139.139 0 0 0-.01.052v1.595c0 .074.06.135.132.135h.87v4.126c0 1.667.809 2.513 2.404 2.513.648 0 1.186-.138 1.694-.434a.135.135 0 0 0 .067-.117V15.64a.137.137 0 0 0-.063-.115.13.13 0 0 0-.129-.006c-.349.18-.685.263-1.061.263-.58 0-.84-.271-.84-.876V11.07h1.99a.13.13 0 0 0 .094-.04.136.136 0 0 0 .039-.096V9.339a.137.137 0 0 0-.039-.096.132.132 0 0 0-.094-.04v.001Zm6.934.007v-.255c0-.755.281-1.092.914-1.092.376 0 .68.077 1.019.194a.13.13 0 0 0 .118-.02.135.135 0 0 0 .056-.11V6.365a.137.137 0 0 0-.026-.081.133.133 0 0 0-.068-.05 4.852 4.852 0 0 0-1.502-.22c-1.67 0-2.554.965-2.554 2.788v.393h-.87a.132.132 0 0 0-.093.04.136.136 0 0 0-.038.096v1.603c0 .075.059.136.132.136h.87v6.364c0 .075.058.135.131.135h1.809c.072 0 .131-.06.131-.135V11.07h1.69l2.586 6.362c-.294.669-.583.802-.977.802-.319 0-.654-.098-.998-.29a.133.133 0 0 0-.105-.01.135.135 0 0 0-.078.072l-.612 1.38a.137.137 0 0 0 .056.175 3.733 3.733 0 0 0 1.932.508c1.334 0 2.073-.638 2.724-2.355l3.137-8.317a.14.14 0 0 0-.014-.126.131.131 0 0 0-.108-.06h-1.883a.132.132 0 0 0-.126.092l-1.928 5.651L69.006 9.3a.133.133 0 0 0-.124-.088h-3.09v.001Zm-4.02-.008h-1.809a.132.132 0 0 0-.093.041.136.136 0 0 0-.038.096v8.094c0 .075.06.135.132.135h1.809c.072 0 .131-.06.131-.135V9.34a.136.136 0 0 0-.038-.096.133.133 0 0 0-.094-.04Zm-.896-3.685a1.295 1.295 0 0 0-.919.393c-.243.25-.379.586-.377.937a1.342 1.342 0 0 0 .377.938 1.304 1.304 0 0 0 .92.393c.346-.002.677-.143.92-.393s.379-.587.377-.938c0-.735-.581-1.33-1.296-1.33h-.002Zm15.918 4.49h-.331v.434h.331c.165 0 .264-.083.264-.216 0-.142-.099-.217-.264-.217Zm.215.619.36.517h-.304l-.323-.474h-.279v.474h-.254v-1.37h.595c.31 0 .515.163.515.436a.412.412 0 0 1-.31.417Zm-.282-1.31c-.652 0-1.146.532-1.146 1.183 0 .65.49 1.175 1.139 1.175.652 0 1.147-.532 1.147-1.183 0-.65-.492-1.174-1.14-1.174Zm-.007 2.488a1.259 1.259 0 0 1-.904-.384 1.296 1.296 0 0 1-.368-.92c0-.717.563-1.314 1.279-1.314a1.259 1.259 0 0 1 .903.384 1.295 1.295 0 0 1 .369.921c0 .717-.563 1.314-1.279 1.314Z"></path></svg></div></div><div class="sc-iOeugr sc-jfvxQR frvyKh bJQQog"><div class="sc-eJDSGI hJMrar"><h1 data-encore-id="visuallyHidden" class="VisuallyHidden__VisuallyHiddenElement-sc-17bibe8-0 eUaqVT">Login</h1><div data-testid="login-container" class="sc-gswNZR sc-hLBbgP jjCFwq GISjU"><h1 class="Type__TypeElement-sc-goli3j-0 jaaEvK sc-bqWxrE gmSfcE" data-encore-id="type">Log in to Spotify</h1><ul class="sc-gswNZR sc-cwSeag jjCFwq eoyGzN"><li class="sc-lllmON jqSqSt"><button data-testid="google-login" class="Button-sc-y0gtbx-0 jJyUnh sc-iAEawV hSZCOi" data-encore-id="buttonSecondary"><span name="new-google-icon" class="sc-eeMvmM cbbRGR"></span><span class="Type__TypeElement-sc-goli3j-0 kwLSIj sc-jSUZER sc-hBxehG sc-fnGiBr hJfyeq gjBoil dxlCOA" data-encore-id="type">Continue with Google</span></button></li><li class="sc-lllmON jqSqSt"><button data-testid="facebook-login" class="Button-sc-y0gtbx-0 jJyUnh sc-iAEawV hSZCOi" data-encore-id="buttonSecondary"><span name="new-facebook-icon" class="sc-eeMvmM ikDKE"></span><span class="Type__TypeElement-sc-goli3j-0 kwLSIj sc-jSUZER sc-hBxehG sc-fnGiBr hJfyeq gjBoil dxlCOA" data-encore-id="type">Continue with Facebook</span></button></li><li class="sc-lllmON jqSqSt"><button data-testid="apple-login" class="Button-sc-y0gtbx-0 jJyUnh sc-iAEawV hSZCOi" data-encore-id="buttonSecondary"><span name="new-apple-icon" class="sc-eeMvmM ikOrvD"></span><span class="Type__TypeElement-sc-goli3j-0 kwLSIj sc-jSUZER sc-hBxehG sc-fnGiBr hJfyeq gjBoil dxlCOA" data-encore-id="type">Continue with Apple</span></button></li><li class="sc-lllmON jqSqSt"><button data-testid="phone-login" class="Button-sc-y0gtbx-0 jJyUnh sc-iAEawV hSZCOi" data-encore-id="buttonSecondary"><span class="Type__TypeElement-sc-goli3j-0 kwLSIj sc-jSUZER sc-hBxehG sc-fnGiBr hJfyeq gjBoil dxlCOA" data-encore-id="type">Continue with phone number</span></button></li></ul><hr role="presentation" class="sc-ftTHYK lnjJQp"><div data-testid="login-form" class="Group-sc-u9bcx5-0 kWRxyd sc-fEXmlR lanGwB" data-encore-id="formGroup"><div class="Group-sc-u9bcx5-0 kWRxyd sc-bjfHbI kXYSGE" data-encore-id="formGroup"><div class="LabelGroup-sc-1ibddrg-0 duTSXm"><label for="login-username" class="Label-sc-1c0cv3r-0 cwWhaQ"><span class="LabelInner-sc-19pye2k-0 LnTCl">Email or username</span></label></div><input aria-invalid="false" id="login-username" type="text" placeholder="Email or username" data-testid="login-username" autocapitalize="off" autocomplete="username" spellcheck="false" autocorrect="off" aria-describedby="username-error" data-encore-id="formInput" class="Input-sc-1gbx9xe-0 fOpTaL" value=""></div><div class="Group-sc-u9bcx5-0 kWRxyd sc-bjfHbI kXYSGE" data-encore-id="formGroup"><div class="LabelGroup-sc-1ibddrg-0 duTSXm"><label for="login-password" class="Label-sc-1c0cv3r-0 cwWhaQ"><span class="LabelInner-sc-19pye2k-0 LnTCl">Password</span></label></div><div data-encore-id="formInputIcon" class="InputContainer-sc-a5ofs0-0 btxxcI"><input aria-invalid="false" id="login-password" type="password" placeholder="Password" data-testid="login-password" autocomplete="current-password" spellcheck="false" autocorrect="off" aria-describedby="password-error" autocapitalize="off" data-encore-id="formInput" class="Input-sc-1gbx9xe-0 fOpTaL"><div class="IconContainer-sc-1oa4n9m-0 huaAbB"><button data-testid="login-password-preview" aria-label="show password" data-encore-id="buttonTertiary" class="Button-sc-1dqy6lx-0 eMFxEP"><span aria-hidden="true" class="IconWrapper__Wrapper-sc-16usrgb-0 eJHlti"><svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" class="Svg-sc-ytk21e-0 uPxdw"><path d="M22.207 2.824a1 1 0 1 0-1.414-1.414L17.15 5.053C15.621 4.363 13.92 4 12 4 8.671 4 5.996 5.091 3.742 7.089c-.896.794-2.3 2.353-3.381 4.453L.125 12l.236.458c1.082 2.1 2.485 3.659 3.381 4.453.278.246.562.479.853.697L1.793 20.41a1 1 0 1 0 1.414 1.414l3.126-3.126.003.002 1.503-1.503-.004-.001 1.73-1.73.004.001 1.567-1.567h-.004l4.68-4.681.001.004 1.595-1.595-.002-.003.11-.109.002.002 1.444-1.444-.003-.002 3.248-3.248zM14.884 7.32l-5.57 5.57A4.035 4.035 0 0 1 8.113 10c0-2.23 1.761-4 3.886-4 1.137 0 2.17.506 2.884 1.319zM7.9 14.304l-1.873 1.873a11.319 11.319 0 0 1-.957-.763C4.396 14.818 3.3 13.621 2.387 12c.913-1.62 2.01-2.818 2.683-3.414.519-.46 1.061-.863 1.634-1.204A6.073 6.073 0 0 0 6.113 10c0 1.681.682 3.21 1.786 4.304zm11.568-5.2 1.415-1.415a16.503 16.503 0 0 1 2.756 3.853l.236.458-.236.458c-1.082 2.1-2.485 3.659-3.381 4.453C18.004 18.908 15.328 20 12 20a13.22 13.22 0 0 1-3.08-.348l1.726-1.726c.435.05.886.074 1.354.074 2.833 0 5.037-.907 6.931-2.586.674-.596 1.77-1.793 2.683-3.414a14.515 14.515 0 0 0-2.146-2.896z"></path><path d="M17.843 10.729c-.328 2.755-2.494 4.956-5.24 5.24l5.24-5.24z"></path></svg></span></button></div></div></div><div class="sc-dIfARi sc-hHTYSt jDOQRe eMYNEd"><div class="Group-sc-u9bcx5-0 kWRxyd sc-bjfHbI sc-idXgbr kXYSGE kpNyJr" data-encore-id="formGroup"><label data-encore-id="formToggle" class="Checkbox-sc-jka46s-0 bqRVOd"><input type="checkbox" id="login-remember" name="remember" data-testid="login-remember" data-encore-id="visuallyHidden" class="VisuallyHidden__VisuallyHiddenElement-sc-17bibe8-0 eUaqVT" checked=""><span class="Wrapper-sc-16y5c87-0 imHfsA"><span class="Indicator-sc-acu4qz-0 GuRdu"></span></span><span class="Label-sc-1sbwovc-0 kGXnFq"><p class="Type__TypeElement-sc-goli3j-0 gkqrGP sc-ksBlkl klVIiA" data-encore-id="type">Remember me</p></span></label></div></div><div class="sc-kgTSHT sc-fLcnxK VNLkf kEMzSi"><button id="login-button" data-testid="login-button" data-encore-id="buttonPrimary" class="Button-sc-qlcn5g-0 otMlU" style="width: 100%;"><span class="ButtonInner-sc-14ud5tc-0 cJdEzG encore-bright-accent-set"><span class="Type__TypeElement-sc-goli3j-0 cOJqPq sc-jSUZER sc-gKPRtg hJfyeq hgatVV" data-encore-id="type">Log In</span></span><span class="ButtonFocus-sc-2hq6ey-0 csWrjt"></span></button></div><div class="sc-dIfARi sc-hHTYSt sc-dmctIk jDOQRe eMYNEd grpPtM"><a href="#" id="reset-password-link" data-testid="reset-password-link" class="Link-sc-k8gsk-0 cIqjxr sc-iJnaPW fjBHsF" data-encore-id="textLink"><p class="Type__TypeElement-sc-goli3j-0 eRYMpa sc-ksBlkl klVIiA" data-encore-id="type">Forgot your password?</p></a></div></div><hr role="presentation" class="sc-ftTHYK sc-pyfCe lnjJQp eSlBje"><div id="sign-up-section" data-testid="signup-section" class="sc-jIRcFI bCkALw"><h2 class="Type__TypeElement-sc-goli3j-0 eRYMpa sc-eDWCr kqUxwq" data-encore-id="type"><span data-encore-id="type" class="Type__TypeElement-sc-goli3j-0 fnlBsz">Don't have an account?</span><a href="#" id="sign-up-link" data-testid="signup-btn-link" class="Link-sc-k8gsk-0 cIqjxr sc-ilhmMj gPLotV" data-encore-id="textLink"><span class="Type__TypeElement-sc-goli3j-0 eRYMpa sc-kMjNwy bZSfRX" data-encore-id="type">Sign up for Spotify</span></a></h2></div></div></div></div><footer><div class="sc-eDvSVe fnhzy"><p data-encore-id="type" class="Type__TypeElement-sc-goli3j-0 fvwaKF">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.</p></div></footer></div></div>
+        <script id="google-recaptcha-v3" src="https://www.google.com/recaptcha/enterprise.js?render=6LfCVLAUAAAAALFwwRnnCJ12DalriUGbj8FW_J39" async=""></script>
+        <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-h29xptqdtaso" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/enterprise/anchor?ar=1&amp;k=6LfCVLAUAAAAALFwwRnnCJ12DalriUGbj8FW_J39&amp;co=aHR0cHM6Ly9hY2NvdW50cy5zcG90aWZ5LmNvbTo0NDM.&amp;hl=en&amp;v=u-xcq3POCWFlCr3x8_IPxgPu&amp;size=invisible&amp;cb=93m5s7upjlj6"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+
+        
+
+       
+
+    </body>
+</html>
